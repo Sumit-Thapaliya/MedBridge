@@ -1,0 +1,173 @@
+.ex-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.ex-tab-btn {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  transition: background-color 0.15s ease;
+}
+.ex-tab-btn:hover {
+  background: var(--canvas);
+}
+
+.ex-tab-btn-active {
+  background: var(--navy-800);
+  color: #fff;
+  border-color: var(--navy-800);
+}
+.ex-tab-btn-active:hover {
+  background: var(--navy-800);
+}
+
+.ex-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ex-card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .ex-card {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.ex-card-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.ex-direction-icon {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ex-direction-icon-in {
+  background: var(--teal-50);
+  color: var(--teal-600);
+}
+
+.ex-direction-icon-out {
+  background: var(--navy-50);
+  color: var(--navy-600);
+}
+
+.ex-card-info {
+  min-width: 0;
+}
+
+.ex-card-title {
+  font-weight: 500;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ex-card-sub {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ex-arrow {
+  margin: 0 0.25rem;
+}
+
+.ex-card-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-left: 3.25rem;
+}
+@media (min-width: 640px) {
+  .ex-card-right {
+    gap: 2rem;
+    padding-left: 0;
+  }
+}
+
+.ex-date-label {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.ex-date-value {
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-top: 0.125rem;
+}
+
+.ex-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Improve secondary exchange-request text contrast in dark mode */
+[data-theme="dark"] .ex-card-title,
+[data-theme="dark"] .ex-date-value {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .ex-card-sub,
+[data-theme="dark"] .ex-date-label {
+  color: var(--ink-soft);
+}
+
+/* Keep the direction icons clear against dark cards */
+[data-theme="dark"] .ex-direction-icon-in {
+  background: rgba(141, 211, 202, 0.14);
+  color: var(--teal-200);
+}
+
+[data-theme="dark"] .ex-direction-icon-out {
+  background: rgba(179, 192, 217, 0.15);
+  color: var(--navy-200);
+}
+/* --------------------------------------------------------------------- */
+/* Phone/tablet-portrait: the card row is a grid item whose min-width      */
+/* defaults to auto, so the nowrap title plus the non-wrapping right       */
+/* block (date + badge + Approve/Decline) stretched every card to 415px    */
+/* and the whole page scrolled sideways — measured 111px of page           */
+/* overflow at 320px, 56px at 375px, 59px at 640px.                        */
+/* --------------------------------------------------------------------- */
+
+/* Grid blowout guard: let cards shrink to the column width; the ellipsis  */
+/* rules already present on title/sub then kick in.                        */
+.ex-list > * {
+  min-width: 0;
+}
+
+/* Below 640px the card stacks; let the right block (date / badge /        */
+/* actions) wrap onto rows instead of forcing the card wider.              */
+@media (max-width: 639px) {
+  .ex-card-right {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+}

@@ -1,0 +1,360 @@
+.inv-toolbar {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inv-toolbar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .inv-toolbar-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.inv-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 24rem;
+}
+
+.inv-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+}
+
+.inv-search-input {
+  width: 100%;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  font-size: 0.875rem;
+}
+.inv-search-input:focus {
+  outline: none;
+  border-color: var(--teal-300);
+  box-shadow: 0 0 0 3px var(--teal-100);
+}
+
+.inv-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.inv-filters-icon {
+  color: var(--ink-faint);
+  margin-right: 0.25rem;
+}
+
+.inv-filter-btn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  transition: background-color 0.15s ease;
+}
+.inv-filter-btn:hover {
+  background: var(--canvas);
+}
+
+.inv-filter-btn-active {
+  background: var(--navy-800);
+  color: #fff;
+  border-color: var(--navy-800);
+}
+.inv-filter-btn-active:hover {
+  background: var(--navy-800);
+}
+
+.inv-table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.inv-loading-pad {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inv-table-scroll {
+  overflow-x: auto;
+}
+
+.inv-table {
+  width: 100%;
+  font-size: 0.875rem;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
+.inv-table thead tr {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--line);
+  background: rgba(245, 247, 250, 0.6);
+}
+
+.inv-table th {
+  font-weight: 500;
+  padding: 0.75rem 0.5rem;
+}
+.inv-table th:first-child { padding-left: 1.25rem; }
+.inv-table th:last-child { padding-right: 1.25rem; }
+
+.inv-table td {
+  padding: 0.75rem 0.5rem;
+}
+.inv-table td:first-child { padding-left: 1.25rem; }
+.inv-table td:last-child { padding-right: 1.25rem; }
+
+.inv-table tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.1s ease;
+}
+.inv-table tbody tr:last-child { border-bottom: none; }
+.inv-table tbody tr:hover { background: rgba(245, 247, 250, 0.4); }
+
+.inv-med-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.inv-med-icon {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  background: var(--navy-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--navy-500);
+}
+
+.inv-med-name {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.inv-batch-cell {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.inv-mono-cell {
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+}
+
+.inv-muted-cell {
+  color: var(--ink-soft);
+}
+
+
+.inv-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.375rem;
+}
+
+.inv-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--navy-100);
+  border-radius: 0.45rem;
+  background: var(--navy-50);
+  color: var(--navy-600);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.inv-action-btn:hover:not(:disabled) {
+  background: var(--navy-100);
+  border-color: var(--navy-300);
+  color: var(--navy-800);
+  transform: translateY(-1px);
+}
+
+.inv-action-btn-danger {
+  background: var(--coral-50);
+  border-color: var(--coral-100);
+  color: var(--coral-600);
+}
+
+.inv-action-btn-danger:hover:not(:disabled) {
+  background: var(--coral-100);
+  border-color: var(--coral-300);
+  color: var(--coral-800);
+}
+
+.inv-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Dark-mode visibility and contrast */
+[data-theme="dark"] .inv-action-btn {
+  background: rgba(141, 211, 202, 0.12);
+  border-color: rgba(141, 211, 202, 0.3);
+  color: var(--teal-200);
+}
+
+[data-theme="dark"] .inv-action-btn:hover:not(:disabled) {
+  background: rgba(141, 211, 202, 0.22);
+  border-color: var(--teal-200);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .inv-action-btn-danger {
+  background: rgba(232, 84, 62, 0.16);
+  border-color: rgba(243, 161, 146, 0.35);
+  color: var(--coral-200);
+}
+
+[data-theme="dark"] .inv-action-btn-danger:hover:not(:disabled) {
+  background: rgba(232, 84, 62, 0.28);
+  border-color: var(--coral-200);
+  color: #ffffff;
+}
+.inv-import-banner {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--teal-50, #e6f6f4);
+  border: 1px solid var(--teal-200, #b5e4df);
+  color: var(--teal-800, #0b6f65);
+  font-size: 0.875rem;
+}
+
+.inv-import-banner.inv-import-error {
+  background: var(--coral-50, #fdecea);
+  border-color: var(--coral-200, #f3a192);
+  color: var(--coral-700, #b4311f);
+}
+
+.inv-import-banner em {
+  font-style: normal;
+  color: var(--coral-700, #b4311f);
+}
+
+/* --------------------------------------------------------------------- */
+/* Phone: a 7-column table cannot fit a 320px screen — measured, the table   */
+/* renders 720px wide and 434px of it (Expiry, Status and the edit/delete   */
+/* buttons) is only reachable by dragging sideways. Below 768px each row     */
+/* becomes a labelled card instead. The <table> stays a real table for       */
+/* screen readers; only the layout changes.                               */
+/* --------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .inv-table-scroll {
+    overflow-x: visible;
+    /* Padding, not row margins: a row's vertical margin collapses through the
+       table and scroller (neither has a border) and added 14px of phantom
+       scroll height to the card. Measured scrollWidth 300 vs clientWidth 286. */
+    padding: 0.875rem;
+  }
+
+  .inv-table,
+  .inv-table tbody,
+  .inv-table tr,
+  .inv-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Without this the base `min-width: 700px` still wins over `width: 100%`
+     and the "cards" stay 700px wide — verified: computed width was 720px
+     before this rule existed. */
+  .inv-table {
+    min-width: 0;
+  }
+
+  .inv-table thead {
+    display: none;
+  }
+
+  .inv-table tbody tr {
+    border: 1px solid var(--line);
+    border-radius: 0.625rem;
+    padding: 0.25rem 0;
+  }
+  .inv-table tbody tr + tr { margin-top: 0.75rem; }
+  .inv-table tbody tr:last-child { border-bottom: 1px solid var(--line); }
+  .inv-table tbody tr:hover { background: transparent; }
+
+  .inv-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.875rem;
+    min-height: 2.25rem;
+    border-bottom: 1px dashed var(--line);
+  }
+  /* Beats .inv-table td:first-child / :last-child (specificity 0,1,2). */
+  .inv-table tbody tr td:first-child,
+  .inv-table tbody tr td:last-child {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+  .inv-table tbody tr td:last-child { border-bottom: none; }
+
+  .inv-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+  }
+
+  .inv-table td[data-label=""] { justify-content: flex-end; }
+
+  .inv-row-actions { justify-content: flex-end; }
+
+  /* Medicine name cell: let it wrap instead of forcing width. */
+  .inv-med-cell { min-width: 0; }
+  .inv-med-name { overflow-wrap: break-word; }
+}
+
+/* Phone header: the three btn-md actions (Template / Import Excel / Add   */
+/* Medicine) get squeezed into two-line-tall buttons at narrow widths.      */
+/* Below 480px make them compact one-line chips, left-aligned, wrapping     */
+/* onto a second row instead of shrinking.                                  */
+@media (max-width: 480px) {
+  .page-header-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .page-header-actions .btn {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    gap: 0.375rem;
+    white-space: nowrap;
+  }
+}

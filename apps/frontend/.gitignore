@@ -1,0 +1,72 @@
+# =========================
+# Node.js
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build
+dist/
+build/
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+.env.development
+.env.production
+
+# =========================
+# Python
+# =========================
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================
+# ML Artifacts
+# =========================
+artifacts/models/*.joblib
+artifacts/metrics/
+*.h5
+*.pkl
+
+# =========================
+# Prisma
+# =========================
+prisma/dev.db
+prisma/dev.db-journal
+
+# =========================
+# VS Code
+# =========================
+.vscode/settings.json
+.history/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Docker
+# =========================
+docker-data/
+
+# =========================
+# Temporary
+# =========================
+tmp/
+temp/

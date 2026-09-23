@@ -1,0 +1,46 @@
+.nf-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--canvas);
+  padding: 0 1.5rem;
+}
+
+.nf-inner {
+  text-align: center;
+}
+
+.nf-icon-wrap {
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 999px;
+  background: var(--navy-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.nf-code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+
+.nf-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-bottom: 0.5rem;
+}
+
+.nf-desc {
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+  max-width: 24rem;
+  margin-left: auto;
+  margin-right: auto;
+}

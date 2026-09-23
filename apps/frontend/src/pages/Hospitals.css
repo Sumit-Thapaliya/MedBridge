@@ -1,0 +1,103 @@
+.hosp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .hosp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1280px) {
+  .hosp-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.hosp-skeleton-card {
+  padding: 1.25rem;
+  height: 168px;
+}
+
+.hosp-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hosp-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.hosp-icon-wrap {
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 0.5rem;
+  background: var(--navy-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hosp-icon {
+  color: var(--navy-600);
+}
+
+.hosp-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--navy-800);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hosp-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: 0.125rem;
+}
+
+.hosp-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.hosp-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hosp-star {
+  color: var(--amber-500);
+  fill: var(--amber-500);
+}
+
+.hosp-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hosp-actions-btn {
+  flex: 1;
+}
+
+/* Grid blowout guard: without min-width:0 the nowrap .hosp-name's          */
+/* max-content stretched the card (and the whole grid column) to 575px —    */
+/* measured 271px of page overflow at 320px, 176px at 640px, 56px at 768px.  */
+/* With the guard the card shrinks to its column and the existing ellipsis  */
+/* on .hosp-name kicks in.                                                  */
+.hosp-grid > * {
+  min-width: 0;
+}
+.hosp-head > * {
+  min-width: 0;
+}

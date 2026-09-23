@@ -1,0 +1,138 @@
+.myreq-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.myreq-loading-pad {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* .myreq-card has overflow:hidden for its rounded corners, so without this
+   scroller the 6-column table is silently clipped on narrow screens — measured
+   at 320px: 181px of table (Status + Action columns) was unreachable. */
+.myreq-table-scroll {
+  overflow-x: auto;
+}
+
+.myreq-table {
+  width: 100%;
+  font-size: 0.875rem;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.myreq-table thead tr {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--line);
+  background: rgba(245, 247, 250, 0.6);
+}
+
+.myreq-table th {
+  font-weight: 500;
+  padding: 0.75rem 0.5rem;
+}
+.myreq-table th:first-child { padding-left: 1.25rem; }
+.myreq-table th:last-child { padding-right: 1.25rem; }
+
+.myreq-table td {
+  padding: 0.75rem 0.5rem;
+}
+.myreq-table td:first-child { padding-left: 1.25rem; }
+.myreq-table td:last-child { padding-right: 1.25rem; }
+
+.myreq-table tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+.myreq-table tbody tr:last-child { border-bottom: none; }
+
+.myreq-name-cell {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.myreq-mono-cell {
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+}
+
+.myreq-muted-cell {
+  color: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------- */
+/* Phone: same treatment as Inventory — below 768px each row becomes a      */
+/* labelled card instead of a sideways-scrolling 640px-wide table. The      */
+/* <table> stays a real table in the DOM; only the layout changes.          */
+/* --------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .myreq-table-scroll {
+    overflow-x: visible;
+    /* padding instead of row margins: vertical margins would collapse      */
+    /* through the table/scroller and add phantom scroll to the card.       */
+    padding: 0.875rem;
+  }
+
+  .myreq-table,
+  .myreq-table tbody,
+  .myreq-table tr,
+  .myreq-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* base min-width: 640px would otherwise beat width: 100% */
+  .myreq-table {
+    min-width: 0;
+  }
+
+  .myreq-table thead {
+    display: none;
+  }
+
+  .myreq-table tbody tr {
+    border: 1px solid var(--line);
+    border-radius: 0.625rem;
+    padding: 0.25rem 0;
+  }
+  .myreq-table tbody tr + tr { margin-top: 0.75rem; }
+  .myreq-table tbody tr:last-child { border-bottom: 1px solid var(--line); }
+
+  .myreq-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.875rem;
+    min-height: 2.25rem;
+    border-bottom: 1px dashed var(--line);
+  }
+  /* Beats .myreq-table td:first-child / :last-child (specificity 0,1,2). */
+  .myreq-table tbody tr td:first-child,
+  .myreq-table tbody tr td:last-child {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+  .myreq-table tbody tr td:last-child { border-bottom: none; }
+
+  .myreq-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+  }
+
+  .myreq-table td[data-label=""] { justify-content: flex-end; }
+
+  .myreq-name-cell {
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+}

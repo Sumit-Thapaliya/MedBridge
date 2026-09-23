@@ -1,0 +1,260 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 4rem;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+@media (min-width: 768px) {
+  .topbar { padding: 0 1.5rem; }
+}
+
+.topbar-menu-btn {
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  display: block;
+}
+@media (min-width: 1024px) {
+  .topbar-menu-btn { display: none; }
+}
+
+.topbar-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 28rem;
+}
+
+.topbar-search-results {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.375rem);
+  left: 0;
+  right: 0;
+  max-height: min(20rem, calc(100vh - 6rem));
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-pop);
+}
+
+.topbar-search-message,
+.topbar-search-result,
+.topbar-search-all {
+  display: block;
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  background: none;
+  border: 0;
+  font-size: 0.8125rem;
+  color: var(--ink);
+}
+
+.topbar-search-result:hover,
+.topbar-search-all:hover { background: var(--canvas); }
+.topbar-search-result span { display: block; color: var(--ink); font-weight: 600; }
+.topbar-search-result small { color: var(--ink-faint); }
+.topbar-search-all { border-top: 1px solid var(--line); color: var(--teal-700); font-weight: 600; }
+.topbar-search-error { color: var(--coral-600); }
+
+.topbar-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-faint);
+  pointer-events: none; /* taps pass through to the input */
+}
+
+.topbar-search-input {
+  width: 100%;
+  background: var(--canvas);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  font-size: 0.875rem;
+  /* type="search" inputs get native browser chrome (a system-drawn
+     background/clear-button) in Chrome/Safari that ignores your CSS
+     background unless you explicitly opt out of it with these two lines. */
+  -webkit-appearance: none;
+  appearance: none;
+}
+.topbar-search-input::placeholder {
+  color: var(--ink-faint);
+}
+.topbar-search-input:focus {
+  outline: none;
+  border-color: var(--teal-300);
+  box-shadow: 0 0 0 3px var(--teal-100);
+}
+/* Removes the native circular "clear" (x) button some browsers draw inside
+   search inputs, since it also ignores your theme colors. */
+.topbar-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.topbar-spacer {
+  flex: 1;
+}
+
+.topbar-icon-btn {
+  position: relative;
+  height: 2.25rem;
+  width: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  color: var(--ink-soft);
+}
+.topbar-icon-btn:hover {
+  background: var(--canvas);
+}
+
+.topbar-bell-badge {
+  position: absolute;
+  top: -0.125rem;
+  right: -0.125rem;
+  height: 1rem;
+  min-width: 1rem;
+  padding: 0 0.125rem;
+  border-radius: 999px;
+  background: var(--coral-500);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-user-menu-wrap {
+  position: relative;
+}
+
+.topbar-user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.25rem 0.25rem 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: none;
+  border: none;
+}
+.topbar-user-btn:hover {
+  background: var(--canvas);
+}
+
+.topbar-avatar {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+
+.topbar-avatar-placeholder {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 999px;
+  background: var(--navy-100);
+}
+
+.topbar-user-text {
+  display: none;
+  text-align: left;
+  line-height: 1.2;
+}
+@media (min-width: 640px) {
+  .topbar-user-text { display: block; }
+}
+
+.topbar-user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.topbar-user-role {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.topbar-chevron {
+  color: var(--ink-faint);
+  display: none;
+}
+@media (min-width: 640px) {
+  .topbar-chevron { display: block; }
+}
+
+.topbar-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 12rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-pop);
+  padding: 0.375rem 0;
+}
+
+.topbar-dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--ink);
+  background: none;
+  border: none;
+}
+.topbar-dropdown-item:hover {
+  background: var(--canvas);
+}
+
+.topbar-dropdown-divider {
+  margin: 0.25rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.topbar-dropdown-danger {
+  color: var(--coral-600);
+}
+.topbar-dropdown-danger:hover {
+  background: var(--coral-50);
+}
+
+/* Phone: the search fights the menu/toggle/bell/avatar for width and loses.
+   On focus it expands to overlay the whole topbar so the typed text and the
+   result names have room; it shrinks back when blurred. */
+@media (max-width: 639px) {
+  .topbar-spacer {
+    display: none; /* on phones the search takes the row; icons stay right */
+  }
+  .topbar-search-wrap {
+    max-width: none;
+  }
+  .topbar-search-input {
+    font-size: 1rem; /* legible, and prevents iOS focus-zoom */
+  }
+  .topbar-search-wrap:focus-within {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    max-width: none;
+    z-index: 45;
+  }
+}

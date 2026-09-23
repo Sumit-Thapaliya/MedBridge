@@ -1,0 +1,349 @@
+.dash-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .dash-stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1280px) {
+  .dash-stat-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.dash-skeleton-card {
+  padding: 1.25rem;
+  height: 130px;
+}
+
+.dash-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (min-width: 1024px) {
+  .dash-charts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1280px) {
+  .dash-charts-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.dash-trend-card {
+  padding: 1.25rem;
+}
+@media (min-width: 1280px) {
+  .dash-trend-card { grid-column: span 2 / span 2; }
+}
+
+.dash-card-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.dash-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--navy-800);
+}
+
+.dash-select {
+  font-size: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  color: var(--ink-soft);
+  background: var(--surface);
+}
+
+.dash-categories-card {
+  padding: 1.25rem;
+}
+
+.dash-categories-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-bottom: 0.75rem;
+}
+
+.dash-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+@media (min-width: 1024px) {
+  .dash-bottom-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1280px) {
+  .dash-bottom-grid { grid-template-columns: repeat(3, 1fr); }
+  .dash-span-rest { grid-column: 1 / -1; }
+}
+
+.dash-panel {
+  padding: 1.25rem;
+}
+
+.dash-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.dash-panel-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--navy-800);
+}
+
+.dash-panel-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--teal-600);
+}
+.dash-panel-link:hover {
+  color: var(--teal-700);
+}
+
+.dash-panel-link-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dash-alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.dash-alert-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.625rem;
+}
+
+.dash-alert-dial {
+  height: 2.75rem;
+  width: 2.75rem;
+  border-radius: 0.5rem;
+  background: var(--coral-50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dash-alert-dial-num {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--coral-600);
+  line-height: 1;
+}
+
+.dash-alert-dial-label {
+  font-size: 0.5625rem;
+  text-transform: uppercase;
+  color: var(--coral-500);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.dash-alert-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.dash-alert-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-alert-exp {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+.dash-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dash-activity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.dash-activity-dot {
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: var(--teal-500);
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.dash-activity-text {
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.dash-activity-time {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: 0.125rem;
+  display: block;
+}
+
+.dash-table-card {
+  margin-top: 1rem;
+  padding: 1.25rem;
+}
+
+.dash-table-scroll {
+  overflow-x: auto;
+  margin: 0 -1.25rem;
+}
+
+.dash-table {
+  width: 100%;
+  font-size: 0.875rem;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.dash-table thead tr {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--line);
+}
+
+.dash-table th {
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+}
+.dash-table th:first-child { padding-left: 1.25rem; }
+.dash-table th:last-child { padding-right: 1.25rem; }
+
+.dash-table td {
+  padding: 0.75rem 0.5rem;
+}
+.dash-table td:first-child { padding-left: 1.25rem; }
+.dash-table td:last-child { padding-right: 1.25rem; }
+
+.dash-table tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+.dash-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.dash-med-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.dash-med-icon {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  background: var(--navy-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--navy-500);
+}
+
+.dash-med-name {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.dash-mono-cell {
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+}
+
+.dash-muted-cell {
+  color: var(--ink-soft);
+}
+
+
+.dash-alert-dial-expired {
+  background: var(--coral-100);
+  /* "EXPIRED" never fits a 44px square — let the dial grow into a pill
+     with real horizontal padding instead of squeezing the label. */
+  width: auto;
+  min-width: 2.75rem;
+  padding: 0 0.625rem;
+}
+
+.dash-alert-dial-expired-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--coral-700);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------- */
+/* Phone: the donut is a fixed 132px, so beside a legend it starves the    */
+/* category names down to a few characters. Stack them instead.            */
+/* --------------------------------------------------------------------- */
+@media (max-width: 559px) {
+  .donut-wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .donut-chart {
+    align-self: center;
+  }
+
+  /* Pull the wide table in from the card padding so it uses full width. */
+  .dash-table-scroll {
+    margin: 0 -1rem;
+  }
+}
+
+/* --------------------------------------------------------------------- */
+/* A grid item's default min-width is auto, so a single unbreakable string  */
+/* in one card stretches the whole column and pushes every sibling card    */
+/* past the right edge. Measured at 320px: all three bottom cards rendered */
+/* 300.8px wide inside a 288px track. min-width: 0 lets the track shrink.  */
+/* --------------------------------------------------------------------- */
+.dash-stat-grid > *,
+.dash-charts-grid > *,
+.dash-bottom-grid > * {
+  min-width: 0;
+}
+
+.dash-empty {
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}

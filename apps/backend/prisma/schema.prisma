@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hospital {
+  id               String              @id @default(uuid())
+  /// Links to ML dataset hospital_id (e.g. DEMO-01) for XGBoost forecasts
+  externalCode     String?             @unique
+  name             String
+  location         String
+  type             String
+  province         String?
+  district         String?
+  ecoregion        String?
+  rating           Float               @default(4.5)
+  createdAt        DateTime            @default(now())
+  outgoingRequests ExchangeRequest[]   @relation("FromHospital")
+  incomingRequests ExchangeRequest[]   @relation("ToHospital")
+  movements        InventoryMovement[]
+  medicines        Medicine[]
+  notifications    Notification[]
+  reports          Report[]
+  users            User[]
+  auditLogs        AuditLog[]
+}
+
+model User {
+  id             String         @id @default(uuid())
+  name           String
+  email          String         @unique
+  passwordHash   String
+  role           Role           @default(STAFF)
+  /// Whether the account may log in. Self-registered STAFF / INVENTORY_MANAGER
+  /// accounts start PENDING and only an ADMIN of the same hospital can approve.
+  approvalStatus ApprovalStatus @default(PENDING)
+  avatarUrl      String?
+  createdAt      DateTime       @default(now())
+  hospitalId     String
+  hospital       Hospital       @relation(fields: [hospitalId], references: [id])
+  auditLogs      AuditLog[]
+
+  @@index([hospitalId, approvalStatus])
+}
+
+model Medicine {
+  id           String              @id @default(uuid())
+  /// Links to ML dataset medicine_id (e.g. MED-001)
+  medicineCode String?
+  name         String
+  category     String
+  batch        String
+  quantity     Int
+  unit         String
+  unitPrice    Float               @default(0)
+  expiry       DateTime
+  status       MedicineStatus      @default(IN_STOCK)
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  hospitalId   String
+  movements    InventoryMovement[]
+  hospital     Hospital            @relation(fields: [hospitalId], references: [id])
+
+  @@index([hospitalId])
+  @@index([medicineCode])
+}
+
+model InventoryMovement {
+  id         String       @id @default(uuid())
+  type       MovementType
+  quantity   Int
+  occurredAt DateTime     @default(now())
+  hospitalId String
+  medicineId String
+  hospital   Hospital     @relation(fields: [hospitalId], references: [id])
+  medicine   Medicine     @relation(fields: [medicineId], references: [id])
+
+  @@index([hospitalId])
+  @@index([medicineId])
+}
+
+model ExchangeRequest {
+  id             String         @id @default(uuid())
+  medicine       String
+  quantity       Int
+  unit           String
+  status         ExchangeStatus @default(PENDING)
+  requestedOn    DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  fromHospitalId String
+  toHospitalId   String
+  fromHospital   Hospital       @relation("FromHospital", fields: [fromHospitalId], references: [id])
+  toHospital     Hospital       @relation("ToHospital", fields: [toHospitalId], references: [id])
+
+  @@index([fromHospitalId])
+  @@index([toHospitalId])
+}
+
+model Notification {
+  id         String           @id @default(uuid())
+  title      String
+  body       String
+  type       NotificationType @default(INFO)
+  read       Boolean          @default(false)
+  createdAt  DateTime         @default(now())
+  hospitalId String
+  hospital   Hospital         @relation(fields: [hospitalId], references: [id])
+
+  @@index([hospitalId])
+}
+
+model Report {
+  id          String     @id @default(uuid())
+  name        String
+  period      String
+  type        ReportType
+  generatedOn DateTime   @default(now())
+  hospitalId  String
+  hospital    Hospital   @relation(fields: [hospitalId], references: [id])
+
+  @@index([hospitalId])
+}
+
+model Conversation {
+  id         String      @id @default(uuid())
+  title      String?
+  userId     String
+  hospitalId String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  messages   AIMessage[]
+
+  @@index([userId])
+  @@index([hospitalId])
+}
+
+model AIMessage {
+  id             String   @id @default(uuid())
+  conversationId String
+  role           String // user, assistant, system
+  content        String   @db.Text
+  tokens         Int?
+  metadata       Json? // context used, provider, etc
+  createdAt      DateTime @default(now())
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+}
+
+enum Role {
+  ADMIN
+  INVENTORY_MANAGER
+  STAFF
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum MedicineStatus {
+  IN_STOCK
+  LOW_STOCK
+  MEDIUM_STOCK
+  CRITICAL
+}
+
+enum ExchangeStatus {
+  PENDING
+  APPROVED
+  IN_TRANSIT
+  COMPLETED
+  DECLINED
+}
+
+enum NotificationType {
+  CRITICAL
+  EXCHANGE
+  INFO
+  SUCCESS
+}
+
+enum ReportType {
+  INVENTORY
+  EXCHANGE
+  COMPLIANCE
+}
+
+enum MovementType {
+  IN
+  OUT
+  PROCUREMENT
+  CONSUMPTION
+  EXCHANGE_OUT
+  EXCHANGE_IN
+  EXPIRY_WRITEOFF
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  hospitalId String
+  userId     String?
+  action     String
+  entity     String
+  entityId   String?
+  oldValue   String?  @db.Text
+  newValue   String?  @db.Text
+  createdAt  DateTime @default(now())
+  hospital   Hospital @relation(fields: [hospitalId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+
+  @@index([hospitalId])
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}

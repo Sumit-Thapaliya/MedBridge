@@ -1,0 +1,15 @@
+# Generated datasets (regenerate with: python training/generate_ledger_data.py)
+data/raw/*.csv
+data/raw/*.json
+data/processed/
+
+# Generated training / model outputs
+artifacts/models/
+artifacts/metrics/
+artifacts/encoders/
+
+# Local runtime files
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens (light theme = default) — change a value here and it     */
+/* updates everywhere it's used.                                          */
+/* ---------------------------------------------------------------------- */
+:root {
+  /* Navy */
+  --navy-50: #EEF1F7;
+  --navy-100: #D9DFEC;
+  --navy-200: #B3C0D9;
+  --navy-300: #8296B8;
+  --navy-400: #546E97;
+  --navy-500: #324D75;
+  --navy-600: #233A5C;
+  --navy-700: #1B2C48;
+  --navy-800: #14213D;
+  --navy-900: #0C1526;
+
+  /* Teal */
+  --teal-50: #E6F5F3;
+  --teal-100: #C3E8E4;
+  --teal-200: #8DD3CA;
+  --teal-300: #57BDAF;
+  --teal-400: #26A596;
+  --teal-500: #0E8C82;
+  --teal-600: #0B7269;
+  --teal-700: #095A53;
+  --teal-800: #07423D;
+  --teal-900: #042925;
+
+  /* Coral (danger / urgent) */
+  --coral-50: #FDECE9;
+  --coral-100: #FACFC5;
+  --coral-200: #F3A192;
+  --coral-300: #EC7360;
+  --coral-400: #E8543E;
+  --coral-500: #D63D26;
+  --coral-600: #B3301C;
+  --coral-700: #8A2516;
+  --coral-800: #611A0F;
+  --coral-900: #3D1009;
+
+  /* Amber (warning) */
+  --amber-50: #FCF3E4;
+  --amber-100: #F8E3BE;
+  --amber-200: #F1CB89;
+  --amber-300: #EBB35C;
+  --amber-400: #E8A23D;
+  --amber-500: #CC8724;
+  --amber-600: #A66C1C;
+  --amber-700: #7D5115;
+  --amber-800: #54360E;
+  --amber-900: #2E1C07;
+
+  /* Neutrals — these 6 are the ones that flip between light/dark below */
+  --surface: #FFFFFF;
+  --canvas: #F5F7FA;
+  --ink: #1C2530;
+  --ink-soft: #4B5768;
+  --ink-faint: #8A94A3;
+  --line: #E4E9EE;
+  --topbar-bg: rgba(255, 255, 255, 0.9);
+
+  /* Type */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Effects */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.1rem;
+  --radius-full: 9999px;
+  --shadow-card: 0 1px 2px rgba(20, 33, 61, 0.04), 0 1px 8px rgba(20, 33, 61, 0.06);
+  --shadow-pop: 0 8px 24px rgba(20, 33, 61, 0.12);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Dark theme — overrides only the 7 neutral/surface tokens above. Brand   */
+/* colors (navy/teal/coral/amber) stay identical in both themes, since     */
+/* they're already used as both backgrounds AND accents throughout.       */
+/* ---------------------------------------------------------------------- */
+[data-theme="dark"] {
+  --surface: #161C2B;
+  --canvas: #0E121C;
+  --ink: #E6E9EF;
+  --ink-soft: #A8B0C0;
+  --ink-faint: #6B7386;
+  --line: #262E42;
+  --topbar-bg: rgba(22, 28, 43, 0.9);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 8px rgba(0, 0, 0, 0.35);
+  --shadow-pop: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Forces LIGHT theme regardless of the global setting. Applied via
+   data-theme="light" on Login's root wrapper div, so it's unaffected by
+   the dark toggle no matter what the rest of the app is set to. (Same
+   values as :root above — restated here so a nested element can override
+   whatever an ancestor set.) */
+[data-theme="light"] {
+  --surface: #FFFFFF;
+  --canvas: #F5F7FA;
+  --ink: #1C2530;
+  --ink-soft: #4B5768;
+  --ink-faint: #8A94A3;
+  --line: #E4E9EE;
+  --topbar-bg: rgba(255, 255, 255, 0.9);
+  --shadow-card: 0 1px 2px rgba(20, 33, 61, 0.04), 0 1px 8px rgba(20, 33, 61, 0.06);
+  --shadow-pop: 0 8px 24px rgba(20, 33, 61, 0.12);
+}
+
+/* Headings/values that use --navy-800 directly as a TEXT color (not just
+   as a button/badge background) read as near-invisible on a dark
+   background. This repaints just those known text usages to --ink in dark
+   mode, without touching --navy-800 itself (so buttons/badges/brand mark
+   that rely on it as a background color are unaffected). If a heading
+   still looks dark-on-dark, add its class name to this list. */
+[data-theme="dark"] .page-header-title,
+[data-theme="dark"] .dash-card-title,
+[data-theme="dark"] .dash-categories-title,
+[data-theme="dark"] .dash-panel-title,
+[data-theme="dark"] .stat-card-value,
+[data-theme="dark"] .sidebar-brand-name,
+[data-theme="dark"] .hosp-name,
+[data-theme="dark"] .forecast-chart-title,
+[data-theme="dark"] .forecast-info-title,
+[data-theme="dark"] .set-card-title,
+[data-theme="dark"] .set-notif-title,
+[data-theme="dark"] .empty-state-title,
+[data-theme="dark"] .error-state-title,
+[data-theme="dark"] .ai-chat-head-name,
+[data-theme="dark"] .nf-title {
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Reset                                                                   */
+/* ---------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--teal-100);
+  color: var(--teal-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal-500);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Shared utility classes used across multiple components                  */
+/* ---------------------------------------------------------------------- */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--navy-100);
+  border-radius: var(--radius-full);
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.35s ease-out both;
+}
+

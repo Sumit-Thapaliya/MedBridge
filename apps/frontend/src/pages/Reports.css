@@ -1,0 +1,95 @@
+.rep-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.rep-loading-pad {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rep-divide > * + * {
+  border-top: 1px solid var(--line);
+}
+
+.rep-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.rep-icon-wrap {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.5rem;
+  background: var(--navy-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--navy-600);
+}
+
+.rep-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.rep-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rep-meta {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: 0.125rem;
+}
+
+/* Generate-report form: was an inline-style 3-column grid; the inputs'     */
+/* min-content (about 198px each) blew the grid out to 556px — measured      */
+/* 253px of page overflow at 320px. Now a class: one column on phones,       */
+/* three from 640px up.                                                      */
+.rep-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 20px;
+}
+.rep-form-grid > * {
+  min-width: 0;
+}
+.rep-form-grid input,
+.rep-form-grid select {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .rep-form-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Phone rows: icon + name on the first line, Export/Delete wrapping to a   */
+/* second right-aligned line instead of squeezing the name to 46px.         */
+@media (max-width: 480px) {
+  .rep-row {
+    flex-wrap: wrap;
+  }
+  /* icon (2.5rem) + one gap (1rem) = 3.5rem; this basis keeps the name on   */
+  /* the icon's line at 320px (measured: 12rem basis wrapped one px early).  */
+  .rep-info {
+    flex: 1 1 calc(100% - 3.5rem);
+  }
+}
+/* Pushes Export + Delete right; on desktop the growing .rep-info already   */
+/* does this, so the row looks identical at full width.                     */
+.rep-row > .btn:first-of-type {
+  margin-left: auto;
+}

@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# ML service — generated data and artifacts are regenerable
+# (see apps/ml-service/.gitignore for the authoritative rules)
+apps/ml-service/data/raw/*.csv
+apps/ml-service/data/raw/*.json
+apps/ml-service/data/processed/
+apps/ml-service/artifacts/
+
+*.pyc
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

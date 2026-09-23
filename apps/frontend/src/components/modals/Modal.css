@@ -1,0 +1,192 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 21, 38, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.modal-panel {
+  width: 100%;
+  max-width: 480px;
+  /* dvh accounts for the mobile browser's actual visible area (address bar,
+     virtual keyboard, etc); vh is kept as a fallback for older browsers
+     that don't support dvh yet. */
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-pop);
+  padding: 1.5rem;
+}
+
+.modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.modal-subtitle {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  margin: 0.25rem 0 0;
+}
+
+.modal-close {
+  border: none;
+  background: var(--canvas);
+  color: var(--ink-soft);
+  /* Bumped from 2rem (32px) to 2.75rem (44px) - 32px falls below Apple's
+     and Google's minimum recommended touch target size, making it easy to
+     mis-tap or miss entirely on a real phone. */
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: var(--line);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.modal-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.modal-input,
+.modal-select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  font: inherit;
+  /* 16px is the magic number: any input font-size below this makes iOS
+     Safari auto-zoom the whole page in when the field is focused, which is
+     the "messy"/jumpy feeling on phones. Desktop appearance is unaffected
+     since 1rem is still a normal, modest input size on larger screens. */
+  font-size: 1rem;
+}
+
+.modal-input:focus,
+.modal-select:focus {
+  outline: none;
+  border-color: var(--teal-400);
+}
+
+.modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.modal-error {
+  padding: 0.6rem 0.75rem;
+  background: var(--coral-50);
+  border: 1px solid var(--coral-200);
+  border-radius: var(--radius-md);
+  color: var(--coral-700);
+  font-size: 0.85rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 540px) {
+  .modal-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small phones (older/smaller devices, ~400px and under): the fixed
+   padding was eating a disproportionate share of a narrow screen's width,
+   and stacked actions give buttons more room to breathe without shrinking
+   their text. */
+@media (max-width: 400px) {
+  .modal-backdrop {
+    padding: 0.5rem;
+  }
+  .modal-panel {
+    padding: 1.125rem;
+  }
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+  .modal-actions > * {
+    width: 100%;
+  }
+}
+
+/* Form controls: readable in both light and dark modes */
+.modal-input,
+.modal-select {
+  background: var(--canvas);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.modal-input::placeholder {
+  color: var(--ink-faint);
+  opacity: 1;
+}
+
+.modal-input:hover,
+.modal-select:hover {
+  border-color: var(--teal-300);
+}
+
+.modal-input:focus,
+.modal-select:focus {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--teal-400);
+  box-shadow: 0 0 0 3px rgba(87, 189, 175, 0.18);
+}
+
+/* Dropdown options, including partner hospital names */
+.modal-select option {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* Makes the calendar/date control match dark mode in supporting browsers */
+[data-theme="dark"] .modal-input[type="date"] {
+  color-scheme: dark;
+}

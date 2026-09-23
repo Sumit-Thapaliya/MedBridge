@@ -1,0 +1,32 @@
+.app-layout-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--canvas);
+}
+
+.app-layout-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-layout-content {
+  flex: 1;
+  padding: 1rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .app-layout-content { padding: 1.5rem; }
+}
+
+.app-layout-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 0;
+  color: var(--ink-faint);
+  font-size: 0.875rem;
+}
